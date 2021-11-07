@@ -1,25 +1,36 @@
-var timeBlock = document.querySelector("#hour-time");
-var hour = document.querySelector("#currentHour");
+var hour = document.querySelectorAll("#currentHour");
 var containerEl = document.querySelector(".container");
 
-
 $(document).ready(function() {
-    function timeDiv() {
-        var i; 
-        for (i = 10; i < 23; i++) {
-        var time = moment().format(i + "a");
-        console.log(time);
-        $(containerEl).append (
-            `<div id="hour-time" class="row time-block">
-                <div id="currentHour" class="col-md-1 hour">` + time + `</div>
-                <textarea class="col-md-10 description"></textarea>
-                <button class="btn saveBtn col-md-1"><i class="fas fa-save"></i></button>
-            </div>`);
-        }
-    };
-    
+    var auditTimeBlock = function() {
+        // get current hour from 
+        var hourNow = moment().hour();
+        console.log(hourNow)
 
-    timeDiv();
+        $(".time-block").each(function() {
+            var time = parseInt($(this).attr("id"));
+            console.log(time);
+            if (hourNow > time) {
+                $(this).addClass("past");
+            }
+            else if (hourNow == time) {
+                $(this).addClass("present");
+            }
+            else {
+                $(this).addClass("future");
+            }
+        });
+
+    };
+
+    $(".saveBtn").on("click", function () {
+        var textVal = $(this).siblings(".description").val();
+        var timeVal = $(this).parent().attr("id");
+        localStorage.setItem(timeVal, textVal);
+    });
+
+    auditTimeBlock();
+    
 });
 
 var getTime = function() {
