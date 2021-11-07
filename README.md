@@ -14,7 +14,7 @@ Used template daily, Work-Day scehduler, and added improvements to show the curr
 ## Links
 
 * [Website Link](https://demsley1.github.io/event-planner/)
-* [Repo Link] (https://github.com/Demsley1/event-planner.git)
+* [Repo Link](https://github.com/Demsley1/event-planner.git)
 
 ## Screenshots of site 
 
